@@ -61,16 +61,18 @@ def toggle_highlight(event=None):
 
 def fullscreen(event=None):
     
-    if fullscreenln.get():
+    if fullscreenln.get() == 1:
         state = 1
-        fullscreenln.set(1)
+        fullscreenln.set(0)
     else:
         state = 0
-        fullscreenln.set(0)
+        fullscreenln.set(1)
     #screen_w = root.winfo_screenwidth()
     #screen_h = root.winfo_screenheight()
     
     root.attributes('-fullscreen', state)
+    return state
+
     
 def anykey(event=None):
     update_line_number()
@@ -308,7 +310,7 @@ themesmenu = Menu(viewmenu, tearoff=0)
 viewmenu.add_cascade(label="Themes", menu=themesmenu)
 viewmenu.add_separator()
 fullscreenln = IntVar()
-viewmenu.add_checkbutton(label="Full Screen", variable=fullscreenln,accelerator='F11', command=fullscreen)
+viewmenu.add_checkbutton(label="Full Screen", variable=fullscreen(),accelerator='F11', command=fullscreen)
 
 
 '''Dizionario con: nome: esadecimale carattere.esadecimale sfondo'''
